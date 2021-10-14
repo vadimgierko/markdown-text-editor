@@ -2,7 +2,7 @@ import ReactMarkdown from "react-markdown";
 
 export default function Article({ content, setMode }) {
     return (
-      <div>
+      <div style={{marginTop: 80}}>
         {
             content ?
                 <ReactMarkdown children={content} />

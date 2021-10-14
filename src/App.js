@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import Header from './components/Header';
 import Article from './components/Article';
 import MarkdownEditor from './components/MarkdownEditor';
 
@@ -14,12 +15,13 @@ function App() {
     window.localStorage.setItem('content', content);
     console.log("content was saved in local storage:", window.localStorage.getItem('content'));
     // get updated content from storage
-    setContent(window.localStorage.getItem('content').length ? window.localStorage.getItem('content') : ``);
+    setContent(window.localStorage.getItem('content'));
   }
   
   return (
-    <div className="container-fluid">
-      <div className="row vh-100">
+    <div className="container">
+      <Header />
+      <div>
         {
           mode === "view" ?
             <Article setMode={setMode} content={content} />
@@ -31,6 +33,13 @@ function App() {
           />
         }
       </div>
+      <hr />
+      <a
+        className="nav-link text-center mb-3"
+        href="https://github.com/vadimgierko"
+        target="_blank"
+        rel="noreferrer"
+      ><span className="text-muted">created by</span> Vadim Gierko | 2021</a>
     </div>
   );
 }
