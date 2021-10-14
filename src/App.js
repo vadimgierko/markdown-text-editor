@@ -2,25 +2,19 @@ import { useState } from 'react';
 import './App.css';
 import Article from './components/Article';
 import MarkdownEditor from './components/MarkdownEditor';
-import MarkdownRenderScreen from './components/MarkdownScreen';
 
 function App() {
-  const [mode, setMode] = useState("view"); //edit // create //view
-  const [markdownInput, setMarkdownInput] = useState(``);
-  const [markdownFromStorage, setMarkdownFromStorage] = useState(``);
-  const [content, setContent] = useState(() => window.localStorage.getItem('markdownInput'));
+  console.log("Content stored in your browser local storage:", window.localStorage.getItem("content"));
+
+  const [mode, setMode] = useState("view"); //edit //view
+  const [content, setContent] = useState(() => window.localStorage.getItem('content'));
   
-  function saveMarkdownInputInStorage() {
-    window.localStorage.setItem('markdownInput', markdownInput);
-    console.log("markdown text was saved in local storage:", window.localStorage);
-    getMarkdownInputFromStorage();
-    setContent(markdownInput);
-  }
-  
-  function getMarkdownInputFromStorage() {
-    let fetchedMarkdown = window.localStorage.getItem('markdownInput');
-    setMarkdownFromStorage(fetchedMarkdown);
-    console.log("markdown text was fetched from local storage:", fetchedMarkdown);
+  function saveContentInStorage(content) {
+    // save new content in storage
+    window.localStorage.setItem('content', content);
+    console.log("content was saved in local storage:", window.localStorage.getItem('content'));
+    // get updated content from storage
+    setContent(window.localStorage.getItem('content').length ? window.localStorage.getItem('content') : ``);
   }
   
   return (
@@ -30,22 +24,11 @@ function App() {
           mode === "view" ?
             <Article setMode={setMode} content={content} />
           :
-          <>
-            <div className="col border rounded m-2">
-              <MarkdownEditor
-                markdownInput={content}
-                setMarkdownInput={setMarkdownInput}
-                saveMarkdownInputInStorage={saveMarkdownInputInStorage}
-                setMode={setMode}
-                setContent={setContent}
-              />
-            </div>
-            <div className="col border rounded m-2">
-              <MarkdownRenderScreen
-                markdownFromStorage={markdownInput}
-              />
-            </div>
-          </>
+          <MarkdownEditor
+            content={content}
+            saveContentInStorage={saveContentInStorage}
+            setMode={setMode}
+          />
         }
       </div>
     </div>
