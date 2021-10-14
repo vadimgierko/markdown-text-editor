@@ -1,5 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import { useState } from "react";
+import remarkGfm from "remark-gfm";
 
 export default function MarkdownEditor({ content, saveContentInStorage, setMode }) {
     //console.log("content passed for edition:", content);
@@ -31,7 +32,7 @@ export default function MarkdownEditor({ content, saveContentInStorage, setMode 
                 <h3 className="text-center">Rendered Output</h3>
                 <hr />
                 <div>
-                    <ReactMarkdown children={contentForEdition} />
+                    <ReactMarkdown children={contentForEdition} remarkPlugins={[remarkGfm]} />
                 </div>
             </div>
         </div>
