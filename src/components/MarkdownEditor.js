@@ -3,7 +3,6 @@ import { useState } from "react";
 import remarkGfm from "remark-gfm";
 
 export default function MarkdownEditor({ content, saveContentInStorage, setMode }) {
-    //console.log("content passed for edition:", content);
     
     const [contentForEdition, setContentForEdition] = useState(content);
 
