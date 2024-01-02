@@ -1,37 +1,37 @@
-import ReactMarkdown from "react-markdown";
 import { useState } from "react";
-import remarkGfm from "remark-gfm";
+import MarkdownRenderer from "./MarkdownRenderer";
+import { useNavigate } from "react-router-dom";
 
-export default function MarkdownEditor({ content, saveContentInStorage, setMode }) {
-    
+export default function MarkdownEditor({ content, saveContentInStorage = null }) {
     const [contentForEdition, setContentForEdition] = useState(content);
+    const navigate = useNavigate();
 
     return (
-        <div className="row" style={{marginTop: 60}}>
-            <div className="col-lg mt-2 mx-2" style={{marginBottom: 90}}>
+        <div className="row">
+            <div className="col-lg mt-2 mx-2">
                 <hr />
                 <h3 className="text-center">Markdown Editor</h3>
                 <hr />
                 <textarea
                     defaultValue={contentForEdition}
                     onChange={(e) => setContentForEdition(e.target.value)}
-                    style={{width: "100%", height: "80%"}}
+                    style={{ width: "100%", height: "80%" }}
                 />
-                <button
+                {saveContentInStorage && <button
                     type="button"
                     className="btn btn-success my-2"
                     onClick={() => {
                         saveContentInStorage(contentForEdition);
-                        setMode("view");
+                        navigate("/rendered-html");
                     }}
-                >Save & Render Markdown Text</button>
+                >Save & Render Markdown Text</button>}
             </div>
             <div className="col-lg m-2">
                 <hr />
                 <h3 className="text-center">Rendered Output</h3>
                 <hr />
                 <div>
-                    <ReactMarkdown children={contentForEdition} remarkPlugins={[remarkGfm]} />
+                    <MarkdownRenderer markdown={contentForEdition} />
                 </div>
             </div>
         </div>

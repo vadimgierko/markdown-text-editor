@@ -1,12 +1,11 @@
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import MarkdownRenderer from "./MarkdownRenderer";
 
 export default function Article({ content, setMode }) {
     return (
-      <div style={{marginTop: 80}}>
+      <article>
         {
             content ?
-                <ReactMarkdown children={content} remarkPlugins={[remarkGfm]} />
+                <MarkdownRenderer markdown={content} />
             :
                 <h3>There is no article here... Create one!</h3>
         }
@@ -15,6 +14,6 @@ export default function Article({ content, setMode }) {
           className="btn btn-danger"
           onClick={() => setMode("edit")}
         >{content ? "Edit article" : "Create article"}</button>
-      </div>
+      </article>
     );
 }
