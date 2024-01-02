@@ -1,4 +1,8 @@
-# Welcome to Online Rich Markdown Editor & Renderer
+import MarkdownEditor from "../components/MarkdownEditor"
+
+const aboutMd = `<h1 align="center">Welcome to Online Rich Markdown Editor & Renderer</h1>
+
+---
 
 **Write & test**
 
@@ -9,9 +13,15 @@
 
 **& see how it is rendered as an HTML!**
 
-Try the app here 👉 https://vadimgierko.github.io/markdown-text-editor/
+---
+
+Actually... 😏 you can edit this rendered text right now by editing Markdown on the left! 😎
+
+Or... you can start from scratch [at the editor subpage](/editor), write some Markdown & then save it (automatically in local storage)!
 
 ## Apps using this editor/ renderer
+
+---
 
 The Markdown Editor/ Rendered is used in a few of my real-world public & open source projects:
 
@@ -20,7 +30,11 @@ The Markdown Editor/ Rendered is used in a few of my real-world public & open so
 - my personal website 👉 [website](https://www.vadimgierko.com/) | [repo](https://github.com/vadimgierko/personal-website-next-js)
 - Blogging Platform (old & new versions) 👉 [platform](https://vadimgierko.github.io/blogging-platform/) | [repo](https://github.com/vadimgierko/blogging-platform-next-js)
 
-## Technologies used in the project *(lastly upgraded in January 2024)*
+## Technologies used in the project
+
+\`lastly upgraded in January 2024\`
+
+---
 
 - React 18.2
 - React Markdown 7.1.2
@@ -30,3 +44,8 @@ The Markdown Editor/ Rendered is used in a few of my real-world public & open so
 - rehype-raw 7.0
 - remark-gfm 3.0.1
 - localStorage *(to store inputed markdown)*
+`
+
+export default function AboutPage() {
+    return <MarkdownEditor content={aboutMd} />
+}
