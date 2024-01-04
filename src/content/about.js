@@ -1,6 +1,4 @@
-import MarkdownEditor from "../components/MarkdownEditor"
-
-const aboutMd = `<h1 align="center">Welcome to Online Rich Markdown Editor & Renderer</h1>
+export const ABOUT = `<h1 align="center">Welcome to Online Rich Markdown Editor & Renderer</h1>
 
 ---
 
@@ -45,7 +43,3 @@ The Markdown Editor/ Rendered is used in a few of my real-world public & open so
 - remark-gfm 3.0.1
 - localStorage *(to store inputed markdown)*
 `
-
-export default function AboutPage() {
-    return <MarkdownEditor content={aboutMd} />
-}

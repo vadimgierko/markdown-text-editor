@@ -13,31 +13,47 @@ import {
 } from "react-router-dom";
 
 import App from './App';
-import EditorPage from './pages/EditorPage';
-import AboutPage from './pages/AboutPage';
-import RenderedHtmlPage from './pages/RenderedHtmlPage';
+import { ABOUT } from './content/about';
+import { MARKDOWN_GUIDE } from './content/markdown-guide';
+import { HTML_GUIDE } from './content/html-guide';
+import MarkdownEditor from './components/MarkdownEditor';
+
+const ROUTES = [
+  {
+    path: "/",
+    markdown: ABOUT,
+    mode: "page"
+  },
+  {
+    path: "/markdown-guide",
+    markdown: MARKDOWN_GUIDE,
+    mode: "page"
+  },
+  {
+    path: "/html-guide",
+    markdown: HTML_GUIDE,
+    mode: "page"
+  },
+  {
+    path: "/editor",
+    markdown: "",
+    mode: "editor"
+  },
+]
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [
-      {
-        path: "/",
-        element: <AboutPage />
-      },
-      {
-        path: "/editor",
-        element: <EditorPage />
-      },
-      {
-        path: "/rendered-html",
-        element: <RenderedHtmlPage />
-      },
-    ]
+    children: ROUTES.map(({ markdown, path, mode }) => ({
+      path,
+      element: <MarkdownEditor key={path} markdown={markdown} mode={mode} />,
+    }))
   },
 ],
-  // basename={process.env.PUBLIC_URL} <= use this in the router if app is published on gh pages
+  // ==================== WARNING! ===================
+  // UNCOMMENT CODE BELOW WHEN DEPLOY VIA GITHUB PAGES,
+  // COMMENT THE CODE WHEN DEV IN CODESPACES OR CODE EDITOR:
   {basename: process.env.PUBLIC_URL}
 );
 

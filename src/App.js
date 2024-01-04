@@ -4,12 +4,11 @@ import Footer from './layout/Footer';
 
 function App() {
   return (
-      <div className="container layout">
+      <div className="container-fluid layout">
           <Navbar />
           <main>
               <Outlet />
           </main>
-          <hr />
           <Footer />
       </div>
   );
