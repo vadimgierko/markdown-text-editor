@@ -1,39 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MarkdownRenderer from "./MarkdownRenderer";
-import { useNavigate } from "react-router-dom";
+import { getMarkdownFromLocalStorage, saveMarkdownInStorage } from "../utils";
 
-export default function MarkdownEditor({ content, saveContentInStorage = null }) {
-    const [contentForEdition, setContentForEdition] = useState(content);
-    const navigate = useNavigate();
+export default function MarkdownEditor({ markdown = "", mode = "editor" }) {
+    const [localMarkdown, setLocalMarkdown] = useState();
+
+    useEffect(() => {
+        if (mode === "editor") {
+            const storedMarkdown = getMarkdownFromLocalStorage();
+            console.log(storedMarkdown)
+            setLocalMarkdown(storedMarkdown);
+        } else if (mode === "page") {
+            setLocalMarkdown(markdown)
+        }
+    }, []);
 
     return (
-        <div className="row">
-            <div className="col-lg mt-2 mx-2">
-                <hr />
-                <h3 className="text-center">Markdown Editor</h3>
-                <hr />
-                <textarea
-                    defaultValue={contentForEdition}
-                    onChange={(e) => setContentForEdition(e.target.value)}
-                    style={{ width: "100%", height: "80%" }}
-                />
-                {saveContentInStorage && <button
-                    type="button"
-                    className="btn btn-success my-2"
-                    onClick={() => {
-                        saveContentInStorage(contentForEdition);
-                        navigate("/rendered-html");
-                    }}
-                >Save & Render Markdown Text</button>}
-            </div>
-            <div className="col-lg m-2">
-                <hr />
-                <h3 className="text-center">Rendered Output</h3>
-                <hr />
-                <div>
-                    <MarkdownRenderer markdown={contentForEdition} />
-                </div>
-            </div>
+        <div className="markdown-editor-component">
+            <textarea
+                className="markdown-editor"
+                value={localMarkdown}
+                placeholder="Type something using Markdown syntax or HTML (also with inline styles 😉) & see how it will be rendered!"
+                onChange={(e) => {
+                    const updatedMarkdown = e.target.value;
+                    setLocalMarkdown(updatedMarkdown);
+
+                    mode === "editor" && saveMarkdownInStorage(updatedMarkdown);
+                }}
+            />
+            <MarkdownRenderer markdown={localMarkdown} />
         </div>
     );
 }

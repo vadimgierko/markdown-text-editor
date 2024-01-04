@@ -22,6 +22,7 @@ export default function MarkdownRenderer({ markdown }) {
 
 	return (
 		<ReactMarkdown
+			className="markdown-renderer"
 			remarkPlugins={[remarkGfm]}
 			rehypePlugins={[
 				// enables rendering HTML tags:
