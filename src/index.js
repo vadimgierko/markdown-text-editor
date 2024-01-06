@@ -54,7 +54,7 @@ const router = createBrowserRouter([
   // ==================== WARNING! ===================
   // UNCOMMENT CODE BELOW WHEN DEPLOY VIA GITHUB PAGES,
   // COMMENT THE CODE WHEN DEV IN CODESPACES OR CODE EDITOR:
-  {basename: process.env.PUBLIC_URL}
+  //{basename: process.env.PUBLIC_URL}
 );
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
