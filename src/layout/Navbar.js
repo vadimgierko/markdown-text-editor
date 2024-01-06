@@ -21,7 +21,7 @@ function ExternalNavLink({ to = "/", text = "some external link", onClick = () =
     </li>
 }
 
-export default function Navbar() {
+export default function Navbar({ isDarkMode = false, toggleMode = () => { } }) {
     const [isNavCollapsed, setIsNavCollapsed] = useState(true);
     const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
@@ -55,6 +55,18 @@ export default function Navbar() {
                         {
                             LINKS.map(link => <InternalNavLink key={link.to + "-nav-link"} to={link.to} text={link.text} onClick={handleNavCollapse} />)
                         }
+                    </ul>
+
+                    <ul className="navbar-nav">
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="mode-toggler"
+                                value={isDarkMode}
+                                onChange={toggleMode}
+                            />
+                            code dark mode
+                        </label>
                     </ul>
                 </div>
             </div>

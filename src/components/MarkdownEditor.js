@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import MarkdownRenderer from "./MarkdownRenderer";
 import { getMarkdownFromLocalStorage, saveMarkdownInStorage } from "../utils";
 
-export default function MarkdownEditor({ markdown = "", mode = "editor" }) {
+export default function MarkdownEditor({
+    markdown = "# Hello, World!",
+    mode = "editor",
+    isDarkMode = false
+}) {
     const [localMarkdown, setLocalMarkdown] = useState();
 
     useEffect(() => {
@@ -28,7 +32,7 @@ export default function MarkdownEditor({ markdown = "", mode = "editor" }) {
                     mode === "editor" && saveMarkdownInStorage(updatedMarkdown);
                 }}
             />
-            <MarkdownRenderer markdown={localMarkdown} />
+            <MarkdownRenderer markdown={localMarkdown} isDarkMode={isDarkMode} />
         </div>
     );
 }
