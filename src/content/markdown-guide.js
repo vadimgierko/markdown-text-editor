@@ -2,7 +2,7 @@ export const MARKDOWN_GUIDE = `<h1 align="center">How to format text using Markd
 
 ---
 
-Using pure Markdown syntax you can create:
+Using this Markdown Editor & Renderer you can use pure Markdown syntax extended with GitHub Flavored Markdown to create:
 
 - headers (h1-h6),
 - lists (oredered & unordered),
@@ -13,7 +13,8 @@ Using pure Markdown syntax you can create:
 - links,
 - images,
 - tables,
-- footnotes.
+- inline code & code blocks (with highlighted syntax)
+- footnotes *(at the moment this feature is enabled only using react-markdown based renderer 👉 toggle the checkbox in navbar to choose this option)*.
 
 Check out the examples of what you're able to do below.
 
@@ -27,7 +28,8 @@ Check out the examples of what you're able to do below.
 # H1
 ## H2
 ### H3
-...
+#### H4
+##### H5
 ###### H6
 \`\`\`
 
@@ -36,6 +38,8 @@ Check out the examples of what you're able to do below.
 # H1
 ## H2
 ### H3
+#### H4
+##### H5
 ###### H6
 
 ---
@@ -221,4 +225,25 @@ or if you want to ensure that the image will not be bigger than the available no
 ---
 
 <img src="https://vadimgierko.github.io/linky-notes/linky-notes-app-screen-vadim-gierko.png" width="100%">
+
+---
+
+## Inline code & code blocks
+
+*What you need to type (see the syntax in editor on the right* 👈
+
+\`\`\`javascript
+const greeting = "Hello, World";
+
+console.log(greeting);
+\`\`\`
+
+*What you get:*
+
+\`\`\`javascript
+const greeting = "Hello, World";
+
+console.log(greeting);
+\`\`\`
+
 `

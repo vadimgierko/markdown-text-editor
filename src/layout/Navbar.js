@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // react-router-bootstrap for link container:
 import { LinkContainer } from "react-router-bootstrap";
+import { useStore } from '../context/useStore';
 
 function InternalNavLink({ to = "/", text = "some internal link", onClick = () => { } }) {
     return <li className="nav-item" onClick={onClick}>
@@ -21,7 +22,8 @@ function ExternalNavLink({ to = "/", text = "some external link", onClick = () =
     </li>
 }
 
-export default function Navbar({ isDarkMode = false, toggleMode = () => { } }) {
+export default function Navbar() {
+    const { isDarkMode, toggleDarkMode, isCustomRenderer, toggleRenderer } = useStore();
     const [isNavCollapsed, setIsNavCollapsed] = useState(true);
     const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
@@ -62,9 +64,18 @@ export default function Navbar({ isDarkMode = false, toggleMode = () => { } }) {
                             <input
                                 type="checkbox"
                                 id="mode-toggler"
+                                value={!isCustomRenderer}
+                                onChange={toggleRenderer}
+                            />{" "}
+                            use react-markdown renderer
+                        </label> |{" "}
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="mode-toggler"
                                 value={isDarkMode}
-                                onChange={toggleMode}
-                            />
+                                onChange={toggleDarkMode}
+                            />{" "}
                             code dark mode
                         </label>
                     </ul>
