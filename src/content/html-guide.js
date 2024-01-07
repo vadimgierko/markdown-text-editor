@@ -1,4 +1,4 @@
-export const HTML_GUIDE = `<h1 align="center">HTML with inline CSS styling</h1>
+export const HTML_GUIDE = `<h1 align="center">How to format text using HTML tags along with inline CSS styling</h1>
 
 In addition to formatting your notes with Markdown syntax,
 you can also use HTML with optional inline CSS styling!
@@ -12,8 +12,10 @@ For example:
 
 <p style="text-align: center; background-color: red; color: white;">If you want to have this centered paragraph with red background and white text, you should write this 👇</p>
 
-\`\`\`
-<p style="text-align: center; background-color: red; color: white;">If you want to have this centered paragraph with red background and white text, you should write this 👇</p>
+\`\`\`html
+<p style="text-align: center; background-color: red; color: white;">
+  If you want to have this centered paragraph with red background and white text, you should write this 👇
+</p>
 \`\`\`
 
 ## Add videos, images &... even the whole websites!
@@ -28,13 +30,4 @@ the result will look like this:
 
 <iframe src="https://www.vadimgierko.com" width="100%" height="500px" title="Linky Notes About Page"></iframe>
 
----
-
-And this code snippet below is highlighted code block:
-
-\`\`\`javascript
-const greeting = "Hello, World";
-
-console.log(greeting);
-\`\`\`
 `
