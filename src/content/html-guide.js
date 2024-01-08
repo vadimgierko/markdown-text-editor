@@ -24,7 +24,10 @@ As been mentioned, thanks to ability of using HTML in your notes,
 you can also add different embed elements to your note.
 
 For example, you can add... the whole website to your notes by adding this:
-\`<iframe src="https://www.vadimgierko.com" width="100%" height="500px" title="Linky Notes About Page"></iframe>\`!
+
+\`\`\`markdown
+<iframe src="https://www.vadimgierko.com" width="100%" height="500px" title="Linky Notes About Page"></iframe>
+\`\`\`
 
 the result will look like this:
 

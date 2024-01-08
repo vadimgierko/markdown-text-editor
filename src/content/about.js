@@ -44,18 +44,31 @@ I've added new editor/renderer features, upgraded tech stack, added router & new
 
 ---
 
-### New features
+### New Markdown Editor/ Renderer features
 
 ---
 
-| Features | 2022 | 2024 |
+| Editor/ Renderer Features | 2022 | 2024 |
 | --- | --- | --- |
 | Markdown | ✅ | ✅ |
 | GitHub Flavored Markdown (GFM) | ✅ | ✅ |
-| code highlighting | ❌ | ✅ |
+| code highlighting (auto light & dark mode) | ❌ | ✅ |
 | HTML tags | ❌ | ✅ |
 | inline CSS styles | ❌ | ✅ |
 | embed elements | ❌ | ✅ |
+| react-markdown/ custom renderer switching | ❌ | ✅ |
+
+---
+
+### New App features
+
+---
+
+| App Features | 2022 | 2024 |
+| --- | --- | --- |
+| Routing | ❌ | ✅ |
+| Dark/ Light Mode | ❌ | ✅ |
+| Guides | ❌ | ✅ |
 
 ---
 
@@ -86,8 +99,10 @@ Those 2 coexisting renderers give almost same input, but there are a few differe
 | react-markdown | 7.0.1 | 7.1.2 |
 | react-router-dom | --- | 6.21.1 |
 | bootstrap | 5.1.3 | 5.3.2 |
+| bootstrap-icons | --- | 1.11.3 |
 | remark-gfm | 3.0.0 | 3.0.1 |
-| rehype-raw | --- | 7.0 |
+| rehype-raw | --- | 7.0.0 |
+| rehype-highlight | --- | 7.0.0 |
 | dompurify | --- | 3.0.8 |
 | marked | --- | 11.1.1 |
 | highlight.js | --- | 11.9.0 |

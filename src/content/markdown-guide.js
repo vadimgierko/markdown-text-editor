@@ -24,7 +24,7 @@ Check out the examples of what you're able to do below.
 
 *What you need to type:*
 
-\`\`\`
+\`\`\`markdown
 # H1
 ## H2
 ### H3
@@ -47,7 +47,7 @@ Check out the examples of what you're able to do below.
 
 *What you need to type:*
 
-\`\`\`
+\`\`\`markdown
 1. First item
 2. Second item
 3. Third item
@@ -65,7 +65,7 @@ Check out the examples of what you're able to do below.
 
 *What you need to type:*
 
-\`\`\`
+\`\`\`markdown
 - First item
 - Second item
 - Third item
@@ -82,7 +82,7 @@ Check out the examples of what you're able to do below.
 
 *What you need to type:*
 
-\`\`\`
+\`\`\`markdown
 **bold text**
 \`\`\`
 
@@ -95,7 +95,7 @@ Check out the examples of what you're able to do below.
 
 *What you need to type:*
 
-\`\`\`
+\`\`\`markdown
 *italicized text*
 \`\`\`
 
@@ -108,7 +108,7 @@ Check out the examples of what you're able to do below.
 
 *What you need to type:*
 
-\`\`\`
+\`\`\`markdown
 [This is linked text (click & try)](https://www.this-is-your-link.com)
 \`\`\`
 
@@ -122,7 +122,9 @@ Check out the examples of what you're able to do below.
 
 *What you need to type:*
 
-\`---\`
+\`\`\`markdown
+---
+\`\`\`
 
 *What you get:*
 
@@ -132,7 +134,7 @@ Check out the examples of what you're able to do below.
 
 *What you need to type:*
 
-\`\`\`
+\`\`\`markdown
 Here's a sentence with a footnote. [^1]
 [^1]: This is the footnote (it appears in the bottom of the page -> check it out!).
 \`\`\`
@@ -149,7 +151,7 @@ Here's a sentence with a footnote. [^1]
 
 *What you need to type:*
 
-\`\`\`
+\`\`\`markdown
 ~~The world is flat.~~
 \`\`\`
 
@@ -163,7 +165,7 @@ Here's a sentence with a footnote. [^1]
 
 *What you need to type:*
 
-\`\`\`
+\`\`\`markdown
 - [x] Write the press release
 - [ ] Update the website
 - [ ] Contact the media
@@ -181,7 +183,7 @@ Here's a sentence with a footnote. [^1]
 
 *What you need to type:*
 
-\`\`\`
+\`\`\`markdown
 | Column Header 1 | Column Header 2 |
 | --------------- | --------------- |
 | column content | column content |
@@ -201,20 +203,20 @@ Here's a sentence with a footnote. [^1]
 
 *What you need to type:*
 
-\`\`\`
+\`\`\`markdown
 ![Screenshot of Linky Notes app](https://vadimgierko.github.io/linky-notes/linky-notes-app-screen-vadim-gierko.png)
 \`\`\`
 
 ***Warning:*** The Markdown syntax for images doesn’t allow you to specify the width and height of images.
 If you need to resize an image, you can use the img HTML tag with the width and height attributes to set the dimensions of an image in pixels:
 
-\`\`\`
+\`\`\`markdown
 <img src="https://vadimgierko.github.io/linky-notes/linky-notes-app-screen-vadim-gierko.png" width="300">
 \`\`\`
 
 or if you want to ensure that the image will not be bigger than the available note space, then use this code:
 
-\`\`\`
+\`\`\`markdown
 <img src="https://vadimgierko.github.io/linky-notes/linky-notes-app-screen-vadim-gierko.png" width="100%">
 \`\`\`
 

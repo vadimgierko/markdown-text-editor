@@ -4,9 +4,6 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
-import hljs from "highlight.js";
-import { useEffect } from "react";
-import { useStore } from "../../context/useStore";
 
 /**
  * @returns `<Link />` from react-router-dom if the link is internal or `<a>` redirecting to a new tab if the link is external
@@ -22,15 +19,6 @@ function LinkRenderer(props) {
 }
 
 export default function ReactMarkdownRenderer({ markdown }) {
-	
-	// highlight code:
-	useEffect(() => {
-		// hljs.highlightAll();
-		document.querySelectorAll("code").forEach((block) => {
-			hljs.highlightElement(block);
-		});
-	}, [markdown]);
-
 	return (
 		<ReactMarkdown
 			className="markdown-renderer"
@@ -39,7 +27,9 @@ export default function ReactMarkdownRenderer({ markdown }) {
 				// enables rendering HTML tags:
 				rehypeRaw,
 				// enables code highlighting:
-				// rehypeHighlight,
+				// ❗WARNING!❗
+				// to enable ✅ correct highlighting 👉 fetch css styles & always define language for code blocks
+				rehypeHighlight, 
 			]}
 			components={{ a: LinkRenderer }}
 		>
