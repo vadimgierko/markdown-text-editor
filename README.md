@@ -81,18 +81,18 @@ Those 2 coexisting renderers give almost same input, but there are a few differe
 
 | Technologies | 2022 | 2024 |
 | --- | --- | --- |
-| react | 17.0.2 | 18.2 |
-| react-markdown | 7.0.1 | 7.1.2 |
+| react | 17.0.2 | 18.2.0 |
+| react-markdown | 7.0.1 | 9.0.1 |
 | react-router-dom | --- | 6.21.1 |
 | bootstrap | 5.1.3 | 5.3.2 |
 | bootstrap-icons | --- | 1.11.3 |
-| remark-gfm | 3.0.0 | 3.0.1 |
+| remark-gfm | 3.0.0 | 4.0.0 |
 | rehype-raw | --- | 7.0.0 |
 | rehype-highlight | --- | 7.0.0 |
 | dompurify | --- | 3.0.8 |
 | marked | --- | 11.1.1 |
 | highlight.js | --- | 11.9.0 |
-| gh-pages | 3.2.3 | 3.2.3 |
+| gh-pages | 3.2.3 | 6.1.1 |
 
 <br>
 
@@ -100,7 +100,7 @@ Those 2 coexisting renderers give almost same input, but there are a few differe
 
 ---
 
-<h2 style="color: red; text-align: center">🐞 WARNING!<br> Partial HTML bug in react-markdown based renderer</h2>
+<h2 align="center">🐞 WARNING!<br> Partial HTML bug in react-markdown based renderer</h2>
 
 If you're **using react-markdown renderer option**, you can get some errors caused by partial HTML or incomplete inline CSS styles in your markdown while you're editing content & **the app may crash**...
 

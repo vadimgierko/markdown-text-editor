@@ -29,7 +29,8 @@ export default function ReactMarkdownRenderer({ markdown }) {
 				// enables code highlighting:
 				// ❗WARNING!❗
 				// to enable ✅ correct highlighting 👉 fetch css styles & always define language for code blocks
-				rehypeHighlight, 
+				// in this project I fetch CSS styles in <MarkdownRenderer /> (parent of ReactMarkdownRenderer) !!!
+				rehypeHighlight,
 			]}
 			components={{ a: LinkRenderer }}
 		>

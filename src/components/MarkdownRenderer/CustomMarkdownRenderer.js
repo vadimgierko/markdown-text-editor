@@ -9,7 +9,7 @@ import DOMPurify from "dompurify";
 import hljs from "highlight.js";
 
 export default function CustomMarkdownRenderer({ markdown }) {
-	const [html, setHtml] = useState('');
+	const [html, setHtml] = useState("");
 
 	const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ export default function CustomMarkdownRenderer({ markdown }) {
 			const modifiedHtml = htmlContent.replace(
 				/<a href="([^"]+)">([^<]+)<\/a>/g,
 				(match, href, content) => {
-					if (href.startsWith('/')) {
+					if (href.startsWith("/")) {
 						return `<a href="${href}" data-internal-link="${href}">${content}</a>`;
 					} else {
 						return `<a href="${href}" target="_blank" rel="noopener noreferrer">${content}</a>`;
@@ -36,7 +36,7 @@ export default function CustomMarkdownRenderer({ markdown }) {
 
 		const dirty_html = marked.parse(markdown);
 		const sanitized_html = DOMPurify.sanitize(dirty_html, {
-			ADD_TAGS: ['iframe'],
+			ADD_TAGS: ["iframe"],
 		});
 		const modifiedHtml = modifyLinks(sanitized_html);
 
@@ -54,24 +54,29 @@ export default function CustomMarkdownRenderer({ markdown }) {
 	useEffect(() => {
 		const handleInternalLinkClick = (e) => {
 			const target = e.target;
-			const href = target.getAttribute('data-internal-link');
+			const href = target.getAttribute("data-internal-link");
 			if (href) {
 				e.preventDefault();
 				navigate(href);
 			}
 		};
 
-		const container = document.getElementsByClassName('markdown-renderer')[0];
+		const container = document.getElementsByClassName("markdown-renderer")[0];
 		if (container) {
-			container.addEventListener('click', handleInternalLinkClick);
+			container.addEventListener("click", handleInternalLinkClick);
 		}
 
 		return () => {
 			if (container) {
-				container.removeEventListener('click', handleInternalLinkClick);
+				container.removeEventListener("click", handleInternalLinkClick);
 			}
 		};
 	}, [navigate]);
 
-	return <div className="markdown-renderer" dangerouslySetInnerHTML={{ __html: html }} />;
+	return (
+		<div
+			className="markdown-renderer"
+			dangerouslySetInnerHTML={{ __html: html }}
+		/>
+	);
 }

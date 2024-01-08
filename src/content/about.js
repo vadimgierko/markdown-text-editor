@@ -95,18 +95,18 @@ Those 2 coexisting renderers give almost same input, but there are a few differe
 
 | Technologies | 2022 | 2024 |
 | --- | --- | --- |
-| react | 17.0.2 | 18.2 |
-| react-markdown | 7.0.1 | 7.1.2 |
+| react | 17.0.2 | 18.2.0 |
+| react-markdown | 7.0.1 | 9.0.1 |
 | react-router-dom | --- | 6.21.1 |
 | bootstrap | 5.1.3 | 5.3.2 |
 | bootstrap-icons | --- | 1.11.3 |
-| remark-gfm | 3.0.0 | 3.0.1 |
+| remark-gfm | 3.0.0 | 4.0.0 |
 | rehype-raw | --- | 7.0.0 |
 | rehype-highlight | --- | 7.0.0 |
 | dompurify | --- | 3.0.8 |
 | marked | --- | 11.1.1 |
 | highlight.js | --- | 11.9.0 |
-| gh-pages | 3.2.3 | 3.2.3 |
+| gh-pages | 3.2.3 | 6.1.1 |
 
 <br>
 
@@ -126,4 +126,4 @@ I will fix it eventually, but **don't worry** - your **content is always synced 
 so refresh the page & fix your partial HTML in non react-markdown renderer option
 *(by default the editor is using my custom md renderer, which is not causing such errors)*
 & you can continue working with react-markdown based renderer if you want to.
-`
+`;
