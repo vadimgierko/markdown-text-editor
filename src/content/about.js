@@ -69,6 +69,7 @@ I've added new editor/renderer features, upgraded tech stack, added router & new
 | Routing | ❌ | ✅ |
 | Dark/ Light Mode | ❌ | ✅ |
 | Guides | ❌ | ✅ |
+| Show/ hide editor/ renderer | ❌ | ✅ |
 
 ---
 
@@ -76,16 +77,23 @@ I've added new editor/renderer features, upgraded tech stack, added router & new
 
 ---
 
-Also I've created & added a **new custom *react-markdown-free* Markdown Renderer** along with the existing renderer built on top of <a href="https://remarkjs.github.io/react-markdown/">react-markdown renderer</a>, so now you can switch between them using a checkbox in the navbar.
+Also I've created & added a **new custom *react-markdown-free* Markdown Renderer**
+along with the existing renderer built on top of <a href="https://remarkjs.github.io/react-markdown/">react-markdown renderer</a>,
+so now you can switch between them using a checkbox in the navbar.
+**Custom renderer is the default** option (becuase it's bugs-free 😏).
 
 Those 2 coexisting renderers give almost same input, but there are a few differences (pros & cons):
 
-1. **react-markdown based renderer**
-   - ✅ depends on & uses [react-markdown](https://remarkjs.github.io/react-markdown/) with additional *remark* & *rehype* plugins
-   - ❌ may cause a partial HTML bug (*read the last section about this issue*)
-2. my **custom renderer**
-   - ✅ is built using [marked](https://marked.js.org/), [dompurify](https://github.com/cure53/DOMPurify) & [highlight.js](https://highlightjs.org/) integrated with React
-   - ❌ doesn't enable creating footnotes... (*but who is using them anyway?* 😏🤣)
+| | react-markdown based editor | custom renderer |
+| --- | :---: | :---: |
+| [react-markdown](https://remarkjs.github.io/react-markdown/) | ✅ | ❌ |
+| *remark* plugins | ✅ | ❌ |
+| *rehype* plugins | ✅ | ❌ |
+| footnotes | ✅ | ❌ |
+| partial HTML bug-free | ❌ | ✅ |
+| [marked](https://marked.js.org/) | ❌ | ✅ |
+| [dompurify](https://github.com/cure53/DOMPurify) | ❌ | ✅ |
+| [highlight.js](https://highlightjs.org/) | ❌ | ✅ |
 
 ---
 

@@ -17,14 +17,23 @@ main {
 }
 
 .markdown-editor-component {
+  height: 100%;
+}
+
+.markdown-editor-navbar {
+  text-align: center;
+  height: 5%;
+}
+
+.markdown-editor-container {
   display: flex;
   flex-direction: row;
-  height: 100%;
+  height: 95%;
 }
 
 .markdown-editor, .markdown-renderer {
   padding: 0 1em;
-  width: 50%;
+  /* width: 50%; => width & display: none is managed in useStore hook */
   height: 100%;
   overflow-y: auto;
 }
