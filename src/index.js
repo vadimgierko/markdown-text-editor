@@ -18,22 +18,22 @@ const ROUTES = [
 	{
 		path: "/",
 		markdown: ABOUT,
-		isEditorMode: false,
+		isEditorPage: false,
 	},
 	{
 		path: "/markdown-guide",
 		markdown: MARKDOWN_GUIDE,
-		isEditorMode: false,
+		isEditorPage: false,
 	},
 	{
 		path: "/html-guide",
 		markdown: HTML_GUIDE,
-		isEditorMode: false,
+		isEditorPage: false,
 	},
 	{
 		path: "/editor",
 		markdown: "",
-		isEditorMode: true,
+		isEditorPage: true,
 	},
 ];
 
@@ -42,13 +42,13 @@ const router = createBrowserRouter(
 		{
 			path: "/",
 			element: <App />,
-			children: ROUTES.map(({ markdown, path, isEditorMode }) => ({
+			children: ROUTES.map(({ markdown, path, isEditorPage }) => ({
 				path,
 				element: (
 					<MarkdownEditor
 						key={path}
 						markdown={markdown}
-						isEditorMode={isEditorMode}
+						isEditorPage={isEditorPage}
 					/>
 				),
 			})),

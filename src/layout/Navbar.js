@@ -6,7 +6,7 @@ import { useStore } from "../context/useStore";
 function InternalNavLink({
 	to = "/",
 	text = "some internal link",
-	onClick = () => {},
+	onClick = () => { },
 }) {
 	return (
 		<li className="nav-item" onClick={onClick}>
@@ -20,7 +20,7 @@ function InternalNavLink({
 function ExternalNavLink({
 	to = "/",
 	text = "some external link",
-	onClick = () => {},
+	onClick = () => { },
 }) {
 	return (
 		<li className="nav-item" onClick={onClick}>
@@ -32,8 +32,10 @@ function ExternalNavLink({
 }
 
 export default function Navbar() {
-	const { isDarkMode, toggleDarkMode, isCustomRenderer, toggleRenderer } =
-		useStore();
+	const {
+		isDarkMode,
+		toggleDarkMode,
+	} = useStore();
 	const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 	const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
@@ -41,12 +43,10 @@ export default function Navbar() {
 		{ to: "/", text: "about" },
 		{ to: "/markdown-guide", text: "markdown guide" },
 		{ to: "/html-guide", text: "html guide" },
-		{ to: "/editor", text: "editor" },
 	];
 
-	// TODO: consider adding this to navbar class: bg-${isDarkMode ? "dark-subtle" : "light-subtle"}
 	return (
-		<nav className={`navbar navbar-expand-sm fixed-top`}>
+		<nav className={`navbar navbar-expand-md fixed-top bg-${isDarkMode ? "dark" : "light"}`}>
 			<div className="container-fluid">
 				<LinkContainer to="/">
 					<a className="navbar-brand mb-0 h1">React Markdown Editor</a>
@@ -79,30 +79,29 @@ export default function Navbar() {
 						))}
 					</ul>
 
+					<hr />
+
 					<ul className="navbar-nav">
-						{/* EDITOR TOGGLE */}
-						<li className="nav-item">
-							<label className="nav-link">
-								<input
-									type="checkbox"
-									id="mode-toggler"
-									checked={!isCustomRenderer}
-									onChange={toggleRenderer}
-								/>{" "}
-								use react-markdown renderer
-							</label>
-						</li>
+						<InternalNavLink
+							to="/editor"
+							text="editor"
+							onClick={handleNavCollapse}
+						/>
 						{/* DARK MODE TOGGLE */}
 						<li className="nav-item">
 							<i
 								className={`bi bi-${isDarkMode ? "sun" : "moon"} nav-link`}
-								onClick={toggleDarkMode}
+								onClick={() => {
+									toggleDarkMode();
+									handleNavCollapse();
+								}}
 							></i>
 						</li>
 						{/* REPO LINK */}
 						<ExternalNavLink
 							to="https://github.com/vadimgierko/markdown-text-editor"
 							text={<i className="bi bi-github"></i>}
+							onClick={handleNavCollapse}
 						/>
 					</ul>
 				</div>
