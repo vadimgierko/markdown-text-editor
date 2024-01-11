@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 // react-router-bootstrap for link container:
 import { LinkContainer } from "react-router-bootstrap";
-import { useStore } from "../context/useStore";
+import { useDarkMode } from "../context/useDarkMode";
 
 function InternalNavLink({
 	to = "/",
 	text = "some internal link",
-	onClick = () => { },
+	onClick = () => {},
 }) {
 	return (
 		<li className="nav-item" onClick={onClick}>
@@ -20,7 +20,7 @@ function InternalNavLink({
 function ExternalNavLink({
 	to = "/",
 	text = "some external link",
-	onClick = () => { },
+	onClick = () => {},
 }) {
 	return (
 		<li className="nav-item" onClick={onClick}>
@@ -32,10 +32,7 @@ function ExternalNavLink({
 }
 
 export default function Navbar() {
-	const {
-		isDarkMode,
-		toggleDarkMode,
-	} = useStore();
+	const { isDarkMode, toggleDarkMode } = useDarkMode();
 	const [isNavCollapsed, setIsNavCollapsed] = useState(true);
 	const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
@@ -46,7 +43,11 @@ export default function Navbar() {
 	];
 
 	return (
-		<nav className={`navbar navbar-expand-md fixed-top bg-${isDarkMode ? "dark" : "light"}`}>
+		<nav
+			className={`navbar navbar-expand-md fixed-top bg-${
+				isDarkMode ? "dark" : "light"
+			}`}
+		>
 			<div className="container-fluid">
 				<LinkContainer to="/">
 					<a className="navbar-brand mb-0 h1">React Markdown Editor</a>

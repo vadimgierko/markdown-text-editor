@@ -1,11 +1,10 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
-const StoreContext = createContext();
+const MarkdownEditorContext = createContext();
 
-export const useStore = () => useContext(StoreContext);
+export const useMarkdownEditor = () => useContext(MarkdownEditorContext);
 
-export const StoreProvider = ({ children }) => {
-	const [isDarkMode, setIsDarkMode] = useState(true);
+export const MarkdownEditorProvider = ({ children }) => {
 	const [isCustomRenderer, setIsCustomRenderer] = useState(true);
 	const [isEditorShown, setIsEditorShown] = useState(true);
 	const [isRendererShown, setIsRendererShown] = useState(true);
@@ -13,18 +12,17 @@ export const StoreProvider = ({ children }) => {
 	// Compute styles based on current state
 	const editorStyles = isEditorShown
 		? isRendererShown
-			? { width: "50%" }
-			: { width: "100%" }
+			? { width: "50%", padding: "0 1em" }
+			: { width: "100%", padding: "0 1em" }
 		: { display: "none" };
 
 	const rendererStyles = isRendererShown
 		? isEditorShown
-			? { width: "50%" }
-			: { width: "100%" }
+			? { width: "50%", padding: "0 1em" }
+			: { width: "100%", padding: "0 0em" } // when html full screen no padding !!!
 		: { display: "none" };
 
 	// Toggle functions
-	const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 	const toggleCustomRenderer = () => setIsCustomRenderer(!isCustomRenderer);
 	const toggleEditor = () => setIsEditorShown(!isEditorShown);
 	const toggleRenderer = () => setIsRendererShown(!isRendererShown);
@@ -35,21 +33,7 @@ export const StoreProvider = ({ children }) => {
 	const showRenderer = () => setIsRendererShown(true);
 	const hideRenderer = () => setIsRendererShown(false);
 
-	// Update theme attribute on dark mode change
-	useEffect(() => {
-		const updateThemeAttribute = () => {
-			const htmlElement = document.querySelector("html");
-			if (htmlElement) {
-				htmlElement.setAttribute("data-bs-theme", isDarkMode ? "dark" : "light");
-			}
-		};
-		updateThemeAttribute();
-	}, [isDarkMode]);
-
 	const value = {
-		// Dark Mode
-		isDarkMode,
-		toggleDarkMode,
 		// Custom Renderer
 		isCustomRenderer,
 		toggleCustomRenderer,
@@ -69,6 +53,8 @@ export const StoreProvider = ({ children }) => {
 	};
 
 	return (
-		<StoreContext.Provider value={value}>{children}</StoreContext.Provider>
+		<MarkdownEditorContext.Provider value={value}>
+			{children}
+		</MarkdownEditorContext.Provider>
 	);
 };

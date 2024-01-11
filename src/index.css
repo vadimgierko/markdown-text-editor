@@ -32,8 +32,8 @@ main {
 }
 
 .markdown-editor, .markdown-renderer {
-  padding: 0 1em;
-  /* width: 50%; => width & display: none is managed in useStore hook */
+  /* padding: 0 1em; => managed in useMarkdownEditor hook */
+  /* width: 50%; => width & display: none is managed in useMarkdownEditor hook */
   height: 100%;
   overflow-y: auto;
 }

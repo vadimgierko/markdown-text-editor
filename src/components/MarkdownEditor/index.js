@@ -4,14 +4,15 @@ import {
 	saveMarkdownInStorage,
 } from "../../utils";
 import MarkdownRenderer from "../MarkdownRenderer";
-import { useStore } from "../../context/useStore";
+import { useDarkMode } from "../../context/useDarkMode";
+import { useMarkdownEditor } from "../../context/useMarkdownEditor";
 
 export default function MarkdownEditor({
 	markdown = "Type something using Markdown syntax or HTML (also with inline styles 😉) & see how it will be rendered!",
 	isEditorPage = false,
 }) {
+	const { isDarkMode } = useDarkMode();
 	const {
-		isDarkMode,
 		isCustomRenderer,
 		toggleCustomRenderer,
 		isEditorShown,
@@ -19,12 +20,18 @@ export default function MarkdownEditor({
 		isRendererShown,
 		toggleRenderer,
 		editorStyles,
-		rendererStyles
-	} = useStore();
+		rendererStyles,
+	} = useMarkdownEditor();
 
-	const [localMarkdown, setLocalMarkdown] = useState(
-		isEditorPage ? getMarkdownFromLocalStorage() : markdown
-	);
+	const [localMarkdown, setLocalMarkdown] = useState();
+
+	useEffect(() => {
+		if (isEditorPage) {
+			setLocalMarkdown(getMarkdownFromLocalStorage());
+		} else {
+			setLocalMarkdown(markdown);
+		}
+	}, [isEditorPage, markdown]);
 
 	return (
 		<div className="markdown-editor-component">
@@ -39,7 +46,7 @@ export default function MarkdownEditor({
 					editor
 				</label>
 				{/* SHOW RENDERER TOGGLE */}
-				<label className="me-1" >
+				<label className="me-1">
 					<input
 						type="checkbox"
 						checked={isRendererShown}
@@ -48,7 +55,7 @@ export default function MarkdownEditor({
 					renderer
 				</label>
 				{/* CUSTOM RENDERER TOGGLE */}
-				<label className="" >
+				<label className="">
 					<input
 						type="checkbox"
 						checked={!isCustomRenderer}
@@ -57,10 +64,15 @@ export default function MarkdownEditor({
 					use react-markdown
 				</label>
 			</div>
-			<div className="markdown-editor-container">
+			<div
+				className={`markdown-editor-container ${
+					(!isEditorShown || !isRendererShown) && "container"
+				}`}
+			>
 				<textarea
-					className={`markdown-editor ${isDarkMode ? "bg-dark-subtle" : "bg-light-subtle"
-						}`}
+					className={`markdown-editor ${
+						isDarkMode ? "bg-dark-subtle" : "bg-light-subtle"
+					}`}
 					value={localMarkdown}
 					placeholder="Type something using Markdown syntax or HTML (also with inline styles 😉) & see how it will be rendered!"
 					onChange={(e) => {

@@ -1,19 +1,14 @@
-import { Outlet } from "react-router-dom";
-import Navbar from "./layout/Navbar";
-import Footer from "./layout/Footer";
-import { StoreProvider } from "./context/useStore";
+import { DarkModeProvider } from "./context/useDarkMode";
+import { MarkdownEditorProvider } from "./context/useMarkdownEditor";
+import Layout from "./layout";
 
 function App() {
 	return (
-		<div className="container-fluid layout">
-			<StoreProvider>
-				<Navbar />
-				<main>
-					<Outlet />
-				</main>
-				<Footer />
-			</StoreProvider>
-		</div>
+		<DarkModeProvider>
+			<MarkdownEditorProvider>
+				<Layout />
+			</MarkdownEditorProvider>
+		</DarkModeProvider>
 	);
 }
 
