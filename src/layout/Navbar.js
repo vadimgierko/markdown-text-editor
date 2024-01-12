@@ -3,29 +3,25 @@ import React, { useState } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { useDarkMode } from "../context/useDarkMode";
 
-function InternalNavLink({
-	to = "/",
-	text = "some internal link",
-	onClick = () => {},
-}) {
+function InternalNavLink({ to = "/", text, onClick = () => {}, iconName }) {
 	return (
 		<li className="nav-item" onClick={onClick}>
 			<LinkContainer to={to}>
-				<a className="nav-link">{text}</a>
+				<a className="nav-link">
+					{iconName && <i className={`bi bi-${iconName} me-2`}></i>}
+					{text && text}
+				</a>
 			</LinkContainer>
 		</li>
 	);
 }
 
-function ExternalNavLink({
-	to = "/",
-	text = "some external link",
-	onClick = () => {},
-}) {
+function ExternalNavLink({ to = "/", text, onClick = () => {}, iconName }) {
 	return (
 		<li className="nav-item" onClick={onClick}>
 			<a className="nav-link" href={to} target="_blank" rel="noreferrer">
-				{text}
+				{iconName && <i className={`bi bi-${iconName} me-2`}></i>}
+				{text && text}
 			</a>
 		</li>
 	);
@@ -34,12 +30,13 @@ function ExternalNavLink({
 export default function Navbar() {
 	const { isDarkMode, toggleDarkMode } = useDarkMode();
 	const [isNavCollapsed, setIsNavCollapsed] = useState(true);
-	const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+	const handleNavCollapse = () =>
+		!isNavCollapsed && setIsNavCollapsed(!isNavCollapsed); // for all nav elements except nav toggle !!!
 
 	const INTERNAL_LINKS_ON_THE_LEFT = [
-		{ to: "/", text: "about" },
-		{ to: "/markdown-guide", text: "markdown guide" },
-		{ to: "/html-guide", text: "html guide" },
+		{ to: "/", text: "about", iconName: "info-square" },
+		{ to: "/markdown-guide", text: "markdown guide", iconName: "markdown" },
+		{ to: "/html-guide", text: "html guide", iconName: "filetype-html" },
 	];
 
 	return (
@@ -60,7 +57,7 @@ export default function Navbar() {
 					aria-controls="navbarColor01"
 					aria-expanded={isNavCollapsed ? true : false}
 					aria-label="Toggle navigation"
-					onClick={handleNavCollapse}
+					onClick={() => setIsNavCollapsed(!isNavCollapsed)}
 				>
 					<span className="navbar-toggler-icon"></span>
 				</button>
@@ -76,6 +73,7 @@ export default function Navbar() {
 								to={link.to}
 								text={link.text}
 								onClick={handleNavCollapse}
+								iconName={link.iconName}
 							/>
 						))}
 					</ul>
@@ -86,6 +84,7 @@ export default function Navbar() {
 						<InternalNavLink
 							to="/editor"
 							text="editor"
+							iconName="pencil-square"
 							onClick={handleNavCollapse}
 						/>
 						{/* DARK MODE TOGGLE */}
@@ -101,7 +100,7 @@ export default function Navbar() {
 						{/* REPO LINK */}
 						<ExternalNavLink
 							to="https://github.com/vadimgierko/markdown-text-editor"
-							text={<i className="bi bi-github"></i>}
+							iconName="github"
 							onClick={handleNavCollapse}
 						/>
 					</ul>
