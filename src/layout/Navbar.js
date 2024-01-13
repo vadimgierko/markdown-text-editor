@@ -63,7 +63,7 @@ export default function Navbar() {
 				</button>
 
 				<div
-					className={`${isNavCollapsed ? "collapse" : null} navbar-collapse`}
+					className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
 					id="navbarColor01"
 				>
 					<ul className="navbar-nav me-auto">

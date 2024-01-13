@@ -16,11 +16,13 @@ export default function MarkdownEditor({
 		isCustomRenderer,
 		toggleCustomRenderer,
 		isEditorShown,
-		toggleEditor,
 		isRendererShown,
-		toggleRenderer,
 		editorStyles,
 		rendererStyles,
+		showRenderer,
+		showEditor,
+		hideRenderer,
+		hideEditor,
 	} = useMarkdownEditor();
 
 	const [localMarkdown, setLocalMarkdown] = useState();
@@ -41,7 +43,13 @@ export default function MarkdownEditor({
 					<input
 						type="checkbox"
 						checked={isEditorShown}
-						onChange={toggleEditor}
+						onChange={
+							isEditorShown
+								? isRendererShown
+									? hideEditor
+									: () => {}
+								: showEditor
+						}
 					/>{" "}
 					editor
 				</label>
@@ -50,7 +58,13 @@ export default function MarkdownEditor({
 					<input
 						type="checkbox"
 						checked={isRendererShown}
-						onChange={toggleRenderer}
+						onChange={
+							isRendererShown
+								? isEditorShown
+									? hideRenderer
+									: () => {}
+								: showRenderer
+						}
 					/>{" "}
 					renderer
 				</label>

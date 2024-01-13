@@ -90,7 +90,7 @@ Those 2 coexisting renderers give almost same input, but there are a few differe
 | *remark* plugins | ✅ | ❌ |
 | *rehype* plugins | ✅ | ❌ |
 | footnotes | ✅ | ❌ |
-| partial HTML bug-free | ❌ | ✅ |
+| partial HTML/ CSS inline styles bug-free | ❌ | ✅ |
 | [marked](https://marked.js.org/) | ❌ | ✅ |
 | [dompurify](https://github.com/cure53/DOMPurify) | ❌ | ✅ |
 | [highlight.js](https://highlightjs.org/) | ❌ | ✅ |
