@@ -1,7 +1,6 @@
-import { useMarkdownEditor } from "../../context/useMarkdownEditor";
-
 import CustomMarkdownRenderer from "./CustomMarkdownRenderer";
 import ReactMarkdownRenderer from "./ReactMarkdownRenderer";
+import { useMarkdownEditor } from "@/context/useMarkdownEditor";
 
 export default function MarkdownRenderer({
 	markdown = "Type something using Markdown syntax or HTML (also with inline styles 😉) & see how it will be rendered!",

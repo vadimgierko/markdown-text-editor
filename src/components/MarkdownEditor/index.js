@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {
 	getMarkdownFromLocalStorage,
 	saveMarkdownInStorage,
-} from "../../utils";
+} from "@/utils/index";
 import MarkdownRenderer from "../MarkdownRenderer";
 import { useDarkMode } from "../../context/useDarkMode";
 import { useMarkdownEditor } from "../../context/useMarkdownEditor";
@@ -10,6 +10,7 @@ import { useMarkdownEditor } from "../../context/useMarkdownEditor";
 export default function MarkdownEditor({
 	markdown = "Type something using Markdown syntax or HTML (also with inline styles 😉) & see how it will be rendered!",
 	isEditorPage = false,
+	prerenderedHtml = "", // for SSG/ getStaticProps to renderer HTML on page load & in page source
 }) {
 	const { isDarkMode } = useDarkMode();
 	const {
@@ -27,9 +28,12 @@ export default function MarkdownEditor({
 
 	const [localMarkdown, setLocalMarkdown] = useState();
 
+	// NEED TO FETCH FROM LOCAL STORAGE IN USE EFFECT
+	// BECAUSE IT RUNS ON CLIENT
 	useEffect(() => {
 		if (isEditorPage) {
-			setLocalMarkdown(getMarkdownFromLocalStorage());
+			const md = getMarkdownFromLocalStorage();
+			setLocalMarkdown(md);
 		} else {
 			setLocalMarkdown(markdown);
 		}
@@ -98,7 +102,14 @@ export default function MarkdownEditor({
 					style={editorStyles}
 				/>
 				<div style={rendererStyles}>
-					<MarkdownRenderer markdown={localMarkdown} />
+					{localMarkdown ? (
+						<MarkdownRenderer markdown={localMarkdown} />
+					) : (
+						<article
+							className="markdown-renderer"
+							dangerouslySetInnerHTML={{ __html: prerenderedHtml }}
+						/>
+					)}
 				</div>
 			</div>
 		</div>

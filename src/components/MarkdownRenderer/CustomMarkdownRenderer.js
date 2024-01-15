@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 // for converting markdown into HTML:
 import { marked } from "marked";
@@ -7,11 +6,12 @@ import { marked } from "marked";
 import DOMPurify from "dompurify";
 // for code highlighting:
 import hljs from "highlight.js";
+import { useRouter } from "next/router";
 
 export default function CustomMarkdownRenderer({ markdown }) {
 	const [html, setHtml] = useState("");
 
-	const navigate = useNavigate();
+	const router = useRouter();
 
 	// convert markdown into html & sanitize it:
 	useEffect(() => {
@@ -57,7 +57,7 @@ export default function CustomMarkdownRenderer({ markdown }) {
 			const href = target.getAttribute("data-internal-link");
 			if (href) {
 				e.preventDefault();
-				navigate(href);
+				router.push(href);
 			}
 		};
 
@@ -71,10 +71,10 @@ export default function CustomMarkdownRenderer({ markdown }) {
 				container.removeEventListener("click", handleInternalLinkClick);
 			}
 		};
-	}, [navigate]);
+	}, [router]);
 
 	return (
-		<div
+		<article
 			className="markdown-renderer"
 			dangerouslySetInnerHTML={{ __html: html }}
 		/>
