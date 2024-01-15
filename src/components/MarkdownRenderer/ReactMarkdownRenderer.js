@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "next/link";
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -6,7 +6,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 
 /**
- * @returns `<Link />` from react-router-dom if the link is internal or `<a>` redirecting to a new tab if the link is external
+ * @returns next `<Link />` if the link is internal or `<a>` redirecting to a new tab if the link is external
  */
 function LinkRenderer(props) {
 	return props.href.match(/^(https?:)?\/\//) ? (
@@ -14,7 +14,7 @@ function LinkRenderer(props) {
 			{props.children}
 		</a>
 	) : (
-		<Link to={props.href}>{props.children}</Link>
+		<Link href={props.href}>{props.children}</Link>
 	);
 }
 
@@ -29,7 +29,7 @@ export default function ReactMarkdownRenderer({ markdown }) {
 				// enables code highlighting:
 				// ❗WARNING!❗
 				// to enable ✅ correct highlighting 👉 fetch css styles & always define language for code blocks
-				// in this project I fetch CSS styles in <MarkdownRenderer /> (parent of ReactMarkdownRenderer) !!!
+				// in this project I fetch CSS styles in <Layout /> !!!
 				rehypeHighlight,
 			]}
 			components={{ a: LinkRenderer }}

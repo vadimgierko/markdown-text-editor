@@ -1,22 +1,36 @@
 import React, { useState } from "react";
-// react-router-bootstrap for link container:
-import { LinkContainer } from "react-router-bootstrap";
-import { useDarkMode } from "../context/useDarkMode";
+import Link from "next/link";
+import { useDarkMode } from "@/context/useDarkMode";
 
-function InternalNavLink({ to = "/", text, onClick = () => {}, iconName }) {
+interface NavLinkProps {
+	to: string;
+	text: string | null | undefined;
+	onClick: () => void;
+	iconName: string;
+}
+
+function InternalNavLink({
+	to = "/",
+	text,
+	onClick = () => {},
+	iconName,
+}: NavLinkProps) {
 	return (
 		<li className="nav-item" onClick={onClick}>
-			<LinkContainer to={to}>
-				<a className="nav-link">
-					{iconName && <i className={`bi bi-${iconName} me-2`}></i>}
-					{text && text}
-				</a>
-			</LinkContainer>
+			<Link className="nav-link" href={to}>
+				{iconName && <i className={`bi bi-${iconName} me-2`}></i>}
+				{text && text}
+			</Link>
 		</li>
 	);
 }
 
-function ExternalNavLink({ to = "/", text, onClick = () => {}, iconName }) {
+function ExternalNavLink({
+	to = "/",
+	text,
+	onClick = () => {},
+	iconName,
+}: NavLinkProps) {
 	return (
 		<li className="nav-item" onClick={onClick}>
 			<a className="nav-link" href={to} target="_blank" rel="noreferrer">
@@ -30,8 +44,7 @@ function ExternalNavLink({ to = "/", text, onClick = () => {}, iconName }) {
 export default function Navbar() {
 	const { isDarkMode, toggleDarkMode } = useDarkMode();
 	const [isNavCollapsed, setIsNavCollapsed] = useState(true);
-	const handleNavCollapse = () =>
-		!isNavCollapsed && setIsNavCollapsed(!isNavCollapsed); // for all nav elements except nav toggle !!!
+	const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
 	const INTERNAL_LINKS_ON_THE_LEFT = [
 		{ to: "/", text: "about", iconName: "info-square" },
@@ -46,9 +59,9 @@ export default function Navbar() {
 			}`}
 		>
 			<div className="container-fluid">
-				<LinkContainer to="/">
-					<a className="navbar-brand mb-0 h1">React Markdown Editor</a>
-				</LinkContainer>
+				<Link className="navbar-brand mb-0 h1" href="/">
+					React Markdown Editor
+				</Link>
 				<button
 					className="navbar-toggler collapsed"
 					type="button"
@@ -57,13 +70,13 @@ export default function Navbar() {
 					aria-controls="navbarColor01"
 					aria-expanded={isNavCollapsed ? true : false}
 					aria-label="Toggle navigation"
-					onClick={() => setIsNavCollapsed(!isNavCollapsed)}
+					onClick={handleNavCollapse}
 				>
 					<span className="navbar-toggler-icon"></span>
 				</button>
 
 				<div
-					className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
+					className={`${isNavCollapsed ? "collapse" : null} navbar-collapse`}
 					id="navbarColor01"
 				>
 					<ul className="navbar-nav me-auto">
@@ -90,7 +103,10 @@ export default function Navbar() {
 						{/* DARK MODE TOGGLE */}
 						<li className="nav-item">
 							<i
-								className={`bi bi-${isDarkMode ? "sun" : "moon"} nav-link`}
+								style={{ cursor: "pointer" }}
+								className={`nav-link bi bi-${
+									isDarkMode ? "sun" : "moon"
+								} nav-link`}
 								onClick={() => {
 									toggleDarkMode();
 									handleNavCollapse();
@@ -102,6 +118,7 @@ export default function Navbar() {
 							to="https://github.com/vadimgierko/markdown-text-editor"
 							iconName="github"
 							onClick={handleNavCollapse}
+							text={null}
 						/>
 					</ul>
 				</div>

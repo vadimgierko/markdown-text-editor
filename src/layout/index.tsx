@@ -1,13 +1,12 @@
-import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { useEffect } from "react";
-import { useDarkMode } from "../context/useDarkMode";
+import { useDarkMode } from "@/context/useDarkMode";
 
-export default function Layout() {
+export default function Layout({ children }: { children: JSX.Element }) {
 	const { isDarkMode } = useDarkMode();
 
-	// fetch light/dark mode css for code highlighting in github style
+	// fetch light/dark mode css for code highlighting in vsc style
 	useEffect(() => {
 		const link = document.createElement("link");
 		link.rel = "stylesheet";
@@ -26,9 +25,7 @@ export default function Layout() {
 	return (
 		<div className="container-fluid layout">
 			<Navbar />
-			<main>
-				<Outlet />
-			</main>
+			<main>{children}</main>
 			<Footer />
 		</div>
 	);
