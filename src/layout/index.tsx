@@ -1,9 +1,9 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { useDarkMode } from "@/context/useDarkMode";
 
-export default function Layout({ children }: { children: JSX.Element }) {
+export default function Layout({ children }: { children: ReactNode }) {
 	const { isDarkMode } = useDarkMode();
 
 	// fetch light/dark mode css for code highlighting in vsc style

@@ -18,7 +18,7 @@ export default function Page({ pageData }: { pageData: PageData }) {
 			<Head>
 				<meta name="author" content="Vadim Gierko" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<link rel="icon" href="/favicon.ico" />
+				<link rel="icon" href="markdown-text-editor/favicon.ico" />
 				<meta name="description" content={head.description} />
 				<title>{head.title}</title>
 			</Head>
