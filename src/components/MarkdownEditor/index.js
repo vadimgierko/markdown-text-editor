@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
 	getMarkdownFromLocalStorage,
+	prerenderSanitizeHtml,
 	saveMarkdownInStorage,
 } from "@/utils/index";
 import MarkdownRenderer from "../MarkdownRenderer";
@@ -28,6 +29,17 @@ export default function MarkdownEditor({
 
 	const [localMarkdown, setLocalMarkdown] = useState();
 
+	async function copyToClipBoard(string) {
+		try {
+			await navigator.clipboard.writeText(string);
+			alert("Copied to clipboard");
+			console.log("Text copied to clipboard:");
+			console.log(string);
+		} catch (error) {
+			console.error("Failed to copy text: ", error);
+		}
+	}
+
 	// NEED TO FETCH FROM LOCAL STORAGE IN USE EFFECT
 	// BECAUSE IT RUNS ON CLIENT
 	useEffect(() => {
@@ -42,7 +54,7 @@ export default function MarkdownEditor({
 	return (
 		<div className="markdown-editor-component">
 			<div className="markdown-editor-navbar">
-				{/* SHOW EDITOR TOGGLE */}
+				{/* SHOW MARKDOWN EDITOR TOGGLE */}
 				<label className="me-1">
 					<input
 						type="checkbox"
@@ -55,9 +67,10 @@ export default function MarkdownEditor({
 								: showEditor
 						}
 					/>{" "}
-					editor
+					md editor
+					{/* editor */}
 				</label>
-				{/* SHOW RENDERER TOGGLE */}
+				{/* SHOW RENDERED HTML TOGGLE */}
 				<label className="me-1">
 					<input
 						type="checkbox"
@@ -72,15 +85,33 @@ export default function MarkdownEditor({
 					/>{" "}
 					renderer
 				</label>
+				<span
+					onClick={async () => {
+						await copyToClipBoard(localMarkdown);
+					}}
+					className="me-1"
+					style={{ cursor: "pointer" }}
+				>
+					<i className="bi bi-clipboard"></i> copy md
+				</span>
+				<span
+					style={{ cursor: "pointer" }}
+					onClick={async () => {
+						const htmlString = await prerenderSanitizeHtml(localMarkdown);
+						await copyToClipBoard(htmlString);
+					}}
+				>
+					<i className="bi bi-clipboard"></i> copy html
+				</span>
 				{/* CUSTOM RENDERER TOGGLE */}
-				<label className="">
+				{/* <label className="">
 					<input
 						type="checkbox"
 						checked={!isCustomRenderer}
 						onChange={toggleCustomRenderer}
 					/>{" "}
 					use react-markdown
-				</label>
+				</label> */}
 			</div>
 			<div
 				className={`markdown-editor-container ${

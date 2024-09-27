@@ -4,7 +4,6 @@ export default function Editor({ pageData }: { pageData: PageData }) {
 	return <Page pageData={pageData} />;
 }
 
-// ❗✅ TODO: add getStaticProps here, even for editor
 export async function getStaticProps() {
 	const pageData: PageData = {
 		head: {
