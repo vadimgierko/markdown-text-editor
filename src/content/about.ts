@@ -57,6 +57,7 @@ I've added new editor/renderer features, upgraded tech stack (upgraded React and
 | inline CSS styles | ❌ | ✅ |
 | embed elements | ❌ | ✅ |
 | react-markdown/ custom renderer switching | ❌ | ✅ |
+| copy markdown or HTML to clipboard | ❌ | ✅ |
 
 ---
 

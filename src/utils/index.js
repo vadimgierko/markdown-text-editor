@@ -14,6 +14,16 @@ export async function prerenderSanitizeHtml(markdown = "") {
 	return prerendered_sanitized_html;
 }
 
+export async function copyToClipBoard(string) {
+	try {
+		await navigator.clipboard.writeText(string);
+		console.log("Text copied to clipboard:");
+		console.log(string);
+	} catch (error) {
+		console.error("Failed to copy text: ", error);
+	}
+}
+
 //==================== LOCAL STORAGE =====================//
 
 export function getMarkdownFromLocalStorage() {
