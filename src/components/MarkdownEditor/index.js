@@ -84,7 +84,8 @@ export default function MarkdownEditor({
 						}
 					/>{" "}
 					renderer
-				</label>
+				</label>{" "}
+				|{" "}
 				<span
 					onClick={async () => {
 						await copyToClipBoard(localMarkdown);
@@ -93,6 +94,16 @@ export default function MarkdownEditor({
 					style={{ cursor: "pointer" }}
 				>
 					<i className="bi bi-clipboard"></i> copy md
+				</span>
+				<span
+					onClick={async () => {
+						const mdString = JSON.stringify(localMarkdown);
+						await copyToClipBoard(mdString);
+					}}
+					className="me-1"
+					style={{ cursor: "pointer" }}
+				>
+					<i className="bi bi-clipboard"></i> copy md string
 				</span>
 				<span
 					style={{ cursor: "pointer" }}
