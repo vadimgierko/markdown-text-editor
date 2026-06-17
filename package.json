@@ -12,7 +12,7 @@
     "@next/third-parties": "^16.1.6",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.3",
-    "dompurify": "^3.4.2",
+    "dompurify": "^3.4.10",
     "highlight.js": "^11.9.0",
     "isomorphic-dompurify": "^2.2.0",
     "marked": "^11.1.1",
